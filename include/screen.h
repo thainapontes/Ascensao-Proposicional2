@@ -151,6 +151,11 @@ static inline void screenBoxDisable()
 }
 
 /**
+ * Desenha bordas na tela usando caracteres de caixa (BOX drawing)
+*/
+void screenDrawBorders();
+
+/**
  * Limpa a tela, define o cursor para a posição inicial (home)
  * e opcionalmente desenha bordas nela.
  * * @param drawBorders se não for zero, desenha bordas na tela.

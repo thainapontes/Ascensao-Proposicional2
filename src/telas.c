@@ -2,6 +2,7 @@
 #include "keyboard.h"
 #include "timer.h"
 #include "main.h"
+#include "telas.h"
 
 #include <stdio.h>
 #include <string.h>
