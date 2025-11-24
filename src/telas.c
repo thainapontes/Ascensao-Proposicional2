@@ -1,6 +1,7 @@
 #include "screen.h"
 #include "keyboard.h"
 #include "timer.h"
+#include "jogador.h"
 #include "main.h"
 #include "telas.h"
 
@@ -9,11 +10,24 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-void imprimirMenu()
+char apelido[TAM_MAX_APELIDO];
+
+void nomeJogador()
 {
     screenClear();
     screenDrawBorders();
 
+    screenGotoxy(5, 3);
+    printf("Olá! Qual o seu nome? ");
+    if (fgets(apelido, sizeof(apelido), stdin))
+    {
+        apelido[strcspn(apelido, "\n")] = '\0';
+        iniciarJogador(apelido);
+    }
+}
+
+void imprimirMenu()
+{
     screenGotoxy(13, 8);
     printf("   _____         _ __      ________       _____ \n");
     screenGotoxy(13, 9);
@@ -131,14 +145,17 @@ void telaDerrota()
 
 int telaInicial() // Função para iniciar o menu
 {
+    nomeJogador(); // Inicia perguntando o nome do player
+
     screenInit(1);  // Inicia a Tela
     keyboardInit(); // Inicia o teclado
 
     while (1)
     {
-        imprimirMenu();     // Imprime as opções do menu inicial
-        int op = getchar(); // lê um char para o switch
-        switch (op)         // Switch das opções
+        imprimirMenu(); // Imprime as opções do menu inicial
+        int opcao;
+        scanf("%d", &opcao); // lê um valor para o switch
+        switch (opcao)       // Switch das opções
         {
         case '1':
             iniciarGame(); // Inicia o jogo
