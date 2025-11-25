@@ -180,15 +180,15 @@ void criarBloco()
     }
 }
 
-int asteroidTick = 0;
+int blocoAtt = 0;
 int tick = 0;
 void atualizaBloco()
 {
-    asteroidTick++;
-    if (asteroidTick % 3 != 0)
-        return; // só move a cada 3 atualizações (ajuste esse valor)
+    blocoAtt++;
+    if (blocoAtt % 3 != 0)
+        return; // só move a cada 3 atualizações
 
-    if (tick == 1000)
+    if (tick == 800) // define a velocidade de queda da resposta
     {
         for (int i = 0; i < MAX_BLOCO; i++)
         {
@@ -196,7 +196,7 @@ void atualizaBloco()
             {
                 // Apaga a posição anterior dele
                 screenGotoxy(bloco[i].x, bloco[i].y);
-                printf("   ");
+                printf(" ");
 
                 // Atualiza o Y para ele descer
                 bloco[i].y++;
