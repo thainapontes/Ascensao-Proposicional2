@@ -35,6 +35,7 @@ Caótico? SEM DÚVIDA.
 ---
 
 ## 👥 Membros da Equipe
+- Ana Beatriz Bezerra - **@anabeatrizbldc**
 - Davi Lucas da Silva Pinheiro — **@davi081dev**  
 - Lucas Vinicius Oliveira da Silva — **@Lucas-Viniicius**  
 - Hugo Vinicius de Lima Mendonça — **@BRKHugz**  
@@ -52,3 +53,4 @@ Caótico? SEM DÚVIDA.
 - Programação Imperativa e Funcional  
 - Lógica para Computação  
 **Professores:** Diego Bezerra e Guilherme Fernando
+
