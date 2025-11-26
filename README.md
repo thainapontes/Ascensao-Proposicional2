@@ -13,9 +13,9 @@ Salve-C é um jogo de sobrevivência em estilo arcade, desenvolvido na linguagem
 
 O mundo foi invadido por proposições lógicas, mas calma! a solucão cai aleatoriamente do céu, na forma de VERDADEIRO (V) ou FALSO (F) e sua missão é simples:
 
-- Coletar apenas as proposições corretas.
-- Se você coletar uma proposição cujo valor **não é o recomendado**, perde uma vida e perde uma quantidade de pontos.
-- Se você coletar uma proposição cujo o valor **é recomendado**, ganha pontos e a proposição é trocada.
+- Coletar apenas os valores lógicos corretos para as proposições.
+- Se você coletar um valor que **não é o recomendado**, perde uma vida e perde uma quantidade de pontos.
+- Se você coletar um valor que **é recomendado**, ganha pontos e a proposição é trocada.
 
 Simples? Talvez.  
 Rápido? Com certeza.  
@@ -53,5 +53,6 @@ Caótico? SEM DÚVIDA.
 - Programação Imperativa e Funcional  
 - Lógica para Computação  
 **Professores:** Diego Bezerra e Guilherme Fernando
+
 
 
