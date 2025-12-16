@@ -19,6 +19,7 @@
 
 int x = 34, y = 12; // Posição inicial do jogador;
 int incX = 1;       // Movimentação do jogador
+float timer = 60.0;
 
 typedef struct
 {
@@ -106,8 +107,8 @@ void logica(Proposicao expressao)
     screenGotoxy(2, 3);
     printf("-------------------------------------------------------------------------------------------------");
 
-    screenGotoxy((MAXX * 0.5) + 8, 2);
-    printf("Vidas: %d          Pontos: %d", statusJogador->vidas, statusJogador->pontos);
+    screenGotoxy((MAXX * 0.5) + 3, 2);
+    printf("Vidas: %d     Pontos: %d     Tempo: %.2f", statusJogador->vidas, statusJogador->pontos, timer);
 }
 
 void verificaColisao(Proposicao *proposicao)
@@ -123,12 +124,14 @@ void verificaColisao(Proposicao *proposicao)
                 if (bloco[i].tipo == respostaProp)
                 {
                     setPontos(jogador->pontos += 100);
+                    timer += 3.0;
                     gerarProposicao(proposicao);
                 }
                 else
                 {
                     setVidas(jogador->vidas -= 1);
                     setPontos(jogador->pontos -= 50);
+                    timer -= 5.0;
                     gerarProposicao(proposicao);
                 }
                 bloco[i].ativo = 0;
@@ -149,11 +152,11 @@ void movimentacao(int ch)
     screenGotoxy(x, y); // apaga a posição anterior do jogador
     printf("   ");      // tamanho do jogador
 
-    if (ch == 100 && x < MAXX - strlen("[_]") - 1) // Tecla A
+    if (ch == 100 && x < MAXX - strlen("[_]") - 1) // Tecla D
     {
         x += incX; // move para a esquerda
     }
-    else if (ch == 97 && x > MINX + 1) // Tecla D
+    else if (ch == 97 && x > MINX + 1) // Tecla A
     {
         x -= incX; // move para a direita
     }
@@ -185,10 +188,10 @@ int tick = 0;
 void atualizaBloco()
 {
     blocoAtt++;
-    if (blocoAtt % 3 != 0)
+    if (blocoAtt % 4 != 0)
         return; // só move a cada 3 atualizações
 
-    if (tick == 800) // define a velocidade de queda da resposta
+    if (tick == 1800) // define a velocidade de queda da resposta
     {
         for (int i = 0; i < MAX_BLOCO; i++)
         {
@@ -218,6 +221,7 @@ void atualizaBloco()
             }
             tick = 0;
         }
+        timer = timer - 0.1;
     }
     tick++;
 }
@@ -230,8 +234,6 @@ void iniciarGame()
     Jogador *jogador = getJogador();
     setVidas(5);
     setPontos(0);
-
-    static long timer = 0;
 
     for (int i = 0; i < MAX_BLOCO; i++)
     {
@@ -250,7 +252,7 @@ void iniciarGame()
     movimentacao(100);
     screenUpdate();
 
-    while (jogador->vidas > 0)
+    while (jogador->vidas > 0 && timer > 0)
     {
         logica(proposicao);
 
@@ -269,16 +271,15 @@ void iniciarGame()
         verificaColisao(&proposicao); // Verifica se o jogador selecionou uma resposta;
 
         screenUpdate();
-        timer++;
     }
-    salvarPontuacao(); // Salva a pontuação em um arquivo externo
-    telaDerrota();     // Mostra a tela de game over
+    salvarPontuacao();
+    timer = 60.0;  // Salva a pontuação em um arquivo externo
+    telaDerrota(); // Mostra a tela de game over
 }
 
 int main()
 {
-    screenSetColor(WHITE, BLACK);
+    screenSetColor(LIGHTGREEN, BLACK);
     telaInicial();
     return 0;
 }
-
